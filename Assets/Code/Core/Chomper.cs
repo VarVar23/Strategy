@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class MainBuilding : CommandExecutorBase<IProduceUnitCommand>, ISelectable
+public class Chomper : MonoBehaviour, ISelectable
 {
     public float Health => _health;
     public float MaxHealth => _maxHealth;
@@ -14,15 +14,9 @@ public class MainBuilding : CommandExecutorBase<IProduceUnitCommand>, ISelectabl
     [SerializeField] private Sprite _icon;
     [SerializeField] private Material _materialSelected;
     [SerializeField] private Material _materialDeselected;
-    [SerializeField] private Transform _unitsParent;
     [SerializeField] private MeshRenderer _meshRenderer;
     private float _health;
 
     private void Awake() => _health = _maxHealth;
-
-    public override void SpecificExecuteCommand(IProduceUnitCommand command)
-    {
-        Vector3 randomPosition = new Vector3(Random.Range(-5, 5), 0.25f, Random.Range(-5, 5));
-        Instantiate(command.UnitPrefab, randomPosition, Quaternion.identity, _unitsParent);
-    }
 }
+
